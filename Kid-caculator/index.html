@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Calculator</title>
+    <link rel="stylesheet" href="../atyle.css">
+</head>
+<body bgcolor="black" text="white">
+    <div>
+        <img src="../Kid.Net.png" width="200px">
+    </div>
+    <h1 style="color: palegoldenrod;">Kid Calculator</h1>
+        <div>
+            <div style="display: flex; justify-content: space-around;">
+                <input type="number" placeholder="Enter Number" class="number1">
+                <p id="symbol"></p>
+                <input type="number" placeholder="Enter Number" class="number2">
+           </div>
+           <br>
+           <br>
+        <div style="display: flex; justify-content: space-around;">
+            <button class="btn8" onclick="add()">Add</button>
+            <button class="btn8" onclick="sub()">Subraction</button>
+            <button class="btn8" onclick="mul()">Mulitipilcation</button>
+            <button class="btn8" onclick="divi()">Division</button>
+        </div>
+            <input class="number3" type="text" id="root" placeholder="Answer"/>
+        </div>
+   <script src="../maths/index.js"></script>
+</body>
+</html>

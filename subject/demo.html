@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch JSON Example</title>
+</head>
+<body>
+    <h1>Online JSON Database Example</h1>
+    <div id="output"></div>
+
+    <script>
+        // Example: Public JSON file URL (replace with your own)
+        const jsonUrl = "https://youtibr.neocities.org/db.json"; 
+
+        // Fetch JSON data
+        fetch(jsonUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Fetched Data:", data);
+                document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error("Error fetching JSON:", error);
+                document.getElementById("output").innerText = "Error loading data.";
+            });
+    </script>
+</body>
+</html>

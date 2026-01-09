@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Number Names with AI Voice</title>
+<style>
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        text-align: center;
+        background: black;
+        color: white;
+    }
+    .container {
+        width: 0%;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 30px;
+        display: grid;
+        margin-left: 50px;
+    }
+    .num {
+        padding: 40px;
+        background: hotpink;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 40px;
+        font-weight: bold;
+        border: 2px solid #ccc;
+        transition: 0.2s;
+        text-transform: capitalize;
+        width: 200px;
+        color: black;
+    }
+    .num:hover {
+        background: lightgreen;
+    }
+</style>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: space-around; align-items: center; column-gap: 30px;">
+        <div style="display: flex; align-items: center; column-gap: 10px;">
+ <img src="../Kid.Net.png" width="200px">
+<h1 style="color: palegoldenrod; font-size: 50px;">Number Names</h1>
+</div>
+
+<div>
+    <p style="font-size: 50px;"><a href="./Numbers-Name2.html" style="color: lightgreen; text-decoration: none;">🡲</a></p>
+</div>
+</div>
+
+<div class="container" id="numbers"></div>
+<br>
+<div style="border: white 4px solid; font-weight: bold; display: grid; grid-template-columns: repeat(5, 1fr); color: lightgreen; padding: 15px; font-size:18px;">
+    <p onclick="one()">1</p>
+    <p onclick="two()">2</p>
+    <p onclick="three()">3</p>
+    <p onclick="four()">4</p>
+    <p onclick="five()">5</p>
+    <p onclick="six()">6</p>
+    <p onclick="seven()">7</p>
+    <p onclick="eight()">8</p>
+    <p onclick="nine()">9</p>
+    <p onclick="ten()">10</p>
+    <p onclick="eleven()">11</p>
+    <p onclick="twelve()">12</p>
+    <p onclick="thirteen()">13</p>
+    <p onclick="fourteen()">14</p>
+    <p onclick="fifteen()">15</p>
+    <p onclick="sixteen()">16</p>
+    <p onclick="seventeen()">17</p>
+    <p onclick="eighteen()">18</p>
+    <p onclick="nineteen()">19</p>
+    <p onclick="twenty()">20</p>
+    <p onclick="twentyOne()">21</p>
+    <p onclick="twentyTwo()">22</p>
+    <p onclick="twentyThree()">23</p>
+    <p onclick="twentyFour()">24</p>
+    <p onclick="twentyFive()">25</p>
+</div>
+<br>
+<center>
+   <form action="./index.html">
+      <button>Back</button>
+   </form>
+</center>
+<script>
+    // Number names 1–20 (you can extend to 100 if needed)
+    const names = [
+    "", 
+    "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+    "sixteen", "seventeen", "eighteen", "nineteen",
+
+    "twenty", "twenty one", "twenty two", "twenty three", "twenty four",
+    "twenty five", "twenty six", "twenty seven", "twenty eight", "twenty nine",
+
+    "thirty", "thirty one", "thirty two", "thirty three", "thirty four",
+    "thirty five", "thirty six", "thirty seven", "thirty eight", "thirty nine",
+
+    "forty", "forty one", "forty two", "forty three", "forty four",
+    "forty five", "forty six", "forty seven", "forty eight", "forty nine",
+
+    "fifty", "fifty one", "fifty two", "fifty three", "fifty four",
+    "fifty five", "fifty six", "fifty seven", "fifty eight", "fifty nine",
+
+    "sixty", "sixty one", "sixty two", "sixty three", "sixty four",
+    "sixty five", "sixty six", "sixty seven", "sixty eight", "sixty nine",
+
+    "seventy", "seventy-one", "seventy-two", "seventy-three", "seventy-four",
+    "seventy five", "seventy six", "seventy seven", "seventy eight", "seventy nine",
+ 
+    "eighty", "eighty one", "eighty two", "eighty three", "eighty four",
+    "eighty five", "eighty six", "eighty seven", "eighty eight", "eighty nine",
+
+    "ninety", "ninety one", "ninety two", "ninety three", "ninety four",
+    "ninety five", "ninety six", "ninety seven", "ninety eight", "ninety nine",
+    "one hundred"
+];  
+
+    // Convert name → O.N.E style spelling
+    function spellOut(word) {
+        return word.toUpperCase().split("").join(".") + ".";
+    }
+
+    // Create boxes
+    const box = document.getElementById("numbers");
+
+    for (let i = 1; i <= 25; i++) {  // change 20 → 100 if you want 1–100
+        let div = document.createElement("div");
+        div.className = "num";
+        div.innerText = names[i];
+
+        div.onclick = () => {
+            let spelled = spellOut(names[i]);  // O.N.E.
+            let message = spelled + " — " + i; // O.N.E. — 1
+            speak(message);
+        };
+
+        box.appendChild(div);
+    }
+
+    // Voice function
+    function speak(msg) {
+        let speech = new SpeechSynthesisUtterance(msg);
+        speech.rate = 1;
+        speech.pitch = 1;
+        speech.lang = "en-US";
+        window.speechSynthesis.speak(speech);
+    }
+function one() {
+    speak("One");
+}
+function two() {
+    speak("Two");
+}
+function three() {
+    speak("Three");
+}
+function four() {
+    speak("Four");
+}
+function five() {
+    speak("Five");
+}
+function six() {
+    speak("Six");
+}
+function seven() {
+    speak("Seven");
+}
+function eight() {
+    speak("Eight");
+}
+function nine() {
+    speak("Nine");
+}
+function ten() {
+    speak("Ten");
+}
+function eleven() {
+    speak("Eleven");
+}
+function twelve() {
+    speak("Twelve");
+}
+function thirteen() {
+    speak("Thirteen");
+}
+function fourteen() {
+    speak("Fourteen");
+}
+function fifteen() {
+    speak("Fifteen");
+}
+function sixteen() {
+    speak("Sixteen");
+}
+function seventeen() {
+    speak("Seventeen");
+}
+function eighteen() {
+    speak("Eighteen");
+}
+function nineteen() {
+    speak("Nineteen");
+}
+function twenty() {
+    speak("Twenty");
+}
+function twentyOne() {
+    speak("Twenty One");
+}
+function twentyTwo() {
+    speak("Twenty Two");
+}
+function twentyThree() {
+    speak("Twenty Three");
+}
+function twentyFour() {
+    speak("Twenty Four");
+}
+function twentyFive() {
+    speak("Twenty Five");
+}
+
+   </script>
+
+</body>
+</html>

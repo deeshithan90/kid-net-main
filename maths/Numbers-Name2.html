@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Number Names with AI Voice</title>
+<style>
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        text-align: center;
+        background: black;
+        color: white;
+    }
+    .container {
+        width: 0%;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 30px;
+        display: grid;
+        margin-left: 50px;
+    }
+    .num {
+        padding: 40px;
+        background: hotpink;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 40px;
+        font-weight: bold;
+        border: 2px solid #ccc;
+        transition: 0.2s;
+        text-transform: capitalize;
+        width: 200px;
+        color: black;
+    }
+    .num:hover {
+        background: lightgreen;
+    }
+</style>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: space-around; align-items: center; column-gap: 30px;">
+        <div style="display: flex; align-items: center; column-gap: 10px;">
+            <img src="../Kid.Net.png" width="200px">
+            <h1 style="color: palegoldenrod; font-size: 50px;">Number Names</h1>
+        </div>
+
+        <div>
+            <p style="font-size: 50px;"><a href="./Numbers-name3.html" style="color: lightgreen; text-decoration: none;">🡲</a></p>
+        </div>
+    </div>
+
+<div class="container" id="numbers"></div>
+<br>
+
+<!-- ADDED 25–50 HERE -->
+<div style="border: white 4px solid; font-weight: bold; display: grid; grid-template-columns: repeat(5, 1fr); color: lightgreen; padding: 15px; font-size:18px;">
+    <p onclick="twentyFive()">25</p>
+    <p onclick="twentySix()">26</p>
+    <p onclick="twentySeven()">27</p>
+    <p onclick="twentyEight()">28</p>
+    <p onclick="twentyNine()">29</p>
+    <p onclick="thirty()">30</p>
+    <p onclick="thirtyOne()">31</p>
+    <p onclick="thirtyTwo()">32</p>
+    <p onclick="thirtyThree()">33</p>
+    <p onclick="thirtyFour()">34</p>
+    <p onclick="thirtyFive()">35</p>
+    <p onclick="thirtySix()">36</p>
+    <p onclick="thirtySeven()">37</p>
+    <p onclick="thirtyEight()">38</p>
+    <p onclick="thirtyNine()">39</p>
+    <p onclick="forty()">40</p>
+    <p onclick="fortyOne()">41</p>
+    <p onclick="fortyTwo()">42</p>
+    <p onclick="fortyThree()">43</p>
+    <p onclick="fortyFour()">44</p>
+    <p onclick="fortyFive()">45</p>
+    <p onclick="fortySix()">46</p>
+    <p onclick="fortySeven()">47</p>
+    <p onclick="fortyEight()">48</p>
+    <p onclick="fortyNine()">49</p>
+    <p onclick="fifty()">50</p>
+</div>
+
+<script>
+
+    const names = [
+    "", 
+    "one","two","three","four","five","six","seven","eight","nine",
+    "ten","eleven","twelve","thirteen","fourteen","fifteen",
+    "sixteen","seventeen","eighteen","nineteen",
+
+    "twenty","twenty one","twenty two","twenty three","twenty four",
+    "twenty five","twenty six","twenty seven","twenty eight","twenty nine",
+
+    "thirty","thirty one","thirty two","thirty three","thirty four",
+    "thirty five","thirty six","thirty seven","thirty eight","thirty nine",
+
+    "forty","forty one","forty two","forty three","forty four",
+    "forty five","forty six","forty seven","forty eight","forty nine",
+
+    "fifty"
+];  
+
+    function spellOut(word) {
+        return word.toUpperCase().split("").join(".") + ".";
+    }
+
+    const box = document.getElementById("numbers");
+
+    // NOW SHOW 1–50
+    for (let i = 25; i <= 50; i++) {
+        let div = document.createElement("div");
+        div.className = "num";
+        div.innerText = names[i];
+
+        div.onclick = () => {
+            let spelled = spellOut(names[i]);
+            let message = spelled + " — " + i;
+            speak(message);
+        };
+
+        box.appendChild(div);
+    }
+
+    function speak(msg) {
+        let speech = new SpeechSynthesisUtterance(msg);
+        speech.rate = 1;
+        speech.pitch = 1;
+        speech.lang = "en-US";
+        window.speechSynthesis.speak(speech);
+    }
+
+    /* FUNCTIONS 25–50 */
+    function twentyFive(){speak("Twenty Five");}
+    function twentySix(){speak("Twenty Six");}
+    function twentySeven(){speak("Twenty Seven");}
+    function twentyEight(){speak("Twenty Eight");}
+    function twentyNine(){speak("Twenty Nine");}
+    function thirty(){speak("Thirty");}
+    function thirtyOne(){speak("Thirty One");}
+    function thirtyTwo(){speak("Thirty Two");}
+    function thirtyThree(){speak("Thirty Three");}
+    function thirtyFour(){speak("Thirty Four");}
+    function thirtyFive(){speak("Thirty Five");}
+    function thirtySix(){speak("Thirty Six");}
+    function thirtySeven(){speak("Thirty Seven");}
+    function thirtyEight(){speak("Thirty Eight");}
+    function thirtyNine(){speak("Thirty Nine");}
+    function forty(){speak("Forty");}
+    function fortyOne(){speak("Forty One");}
+    function fortyTwo(){speak("Forty Two");}
+    function fortyThree(){speak("Forty Three");}
+    function fortyFour(){speak("Forty Four");}
+    function fortyFive(){speak("Forty Five");}
+    function fortySix(){speak("Forty Six");}
+    function fortySeven(){speak("Forty Seven");}
+    function fortyEight(){speak("Forty Eight");}
+    function fortyNine(){speak("Forty Nine");}
+    function fifty(){speak("Fifty");}
+
+</script>
+
+</body>
+</html>

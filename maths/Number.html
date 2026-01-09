@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Number Balloons 1–50</title>
+<style>
+    body {
+        background: black;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    .balloon {
+        width: 150px;
+        height: 140px;
+        background: hotpink;
+        border-radius: 50%;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        transition: transform 0.2s;
+        font-size: 50px;
+    }
+
+    .balloon:hover {
+        transform: scale(1.1);
+        background: lightgreen;
+    }
+
+    .string {
+        width: 2px;
+        height: 40px;
+        background: white;
+        margin: 0 auto;
+    }
+    .Con{
+        display: flex;
+        justify-content: space-around;
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+</style>
+</head>
+<body text="white">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; column-gap: 10px;">
+    <img src="../Kid.Net.png" width="200px">
+    <h1 style="font-size: 60px; color: palegoldenrod; font-weight: bold;">Numbers</h1>
+    </div>
+    <div>
+        <p><a href="./index2.html" style="font-size: 65px; position: absolute; top: 70px; left:80%; font-weight: bold; color: red; text-decoration: none;">---></a></p>
+    </div>
+</div>
+    </div>
+    <div class="Con">
+
+    </div>
+    <br>
+    <br>
+    <center>
+        <form action="./index.html">
+            <button>Back</button>
+        </form>
+    </center>
+</body>
+<script>
+    var Con = document.querySelector(".Con");
+
+    // Generate 1 to 50 balloons
+    for (let i = 1; i <= 50; i++) {
+        let container = document.createElement("div");
+        container.style.textAlign = "center";
+
+        let balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.textContent = i;
+
+        // Click event to speak even / odd number
+        balloon.onclick = () => {
+            let type = (i % 2 === 0) ? "even number" : "odd number";
+            let textToSpeak = i + " " + type;
+
+            let speak = new SpeechSynthesisUtterance(textToSpeak);
+            speechSynthesis.speak(speak);
+        };
+
+        let string = document.createElement("div");
+        string.className = "string";
+
+        container.appendChild(balloon);
+        container.appendChild(string);
+        Con.appendChild(container);
+    }
+</script>
+
+
+</body>
+</html>

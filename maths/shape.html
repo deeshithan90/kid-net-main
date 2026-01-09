@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shapes Page</title>
+  <style>
+    body {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      text-align: center;
+      background-color: black;
+      padding: 20px;
+    }
+
+    h1 {
+      color: hotpink;
+    }
+
+    .shapes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr; /* left, center, right */
+      grid-template-rows: repeat(6, 120px); /* 6 rows */
+      gap: 20px;
+      justify-items: center;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .shape {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .shape:hover {
+      transform: scale(1.1);
+    }
+
+    /* 2D Shapes */
+    .circle {
+      width: 100px;
+      height: 100px;
+      background-color: #ff6f61;
+      border-radius: 50%;
+    }
+
+    .square {
+      width: 100px;
+      height: 100px;
+      background-color: #6b5b95;
+    }
+
+    .rectangle {
+      width: 140px;
+      height: 100px;
+      background-color: #88b04b;
+    }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid #f7cac9;
+    }
+
+    .pentagon {
+      width: 100px;
+      height: 100px;
+      background-color: #92a8d1;
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    }
+
+    .hexagon {
+      width: 104px;
+      height: 60px;
+      background-color: #f7786b;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    }
+
+    /* 3D Shapes */
+    .cube {
+      width: 100px;
+      height: 100px;
+      background-color: #f7cac9;
+    }
+
+    .sphere {
+      width: 100px;
+      height: 100px;
+      background-color: #92a8d1;
+      border-radius: 50%;
+    }
+
+    .cylinder {
+      width: 80px;
+      height: 100px;
+      background-color: #955251;
+      border-radius: 50% / 10%;
+    }
+
+    .cone {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid #6b5b95;
+    }
+
+    .pyramid {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid #ff6f61;
+    }
+
+    .prism {
+      width: 100px;
+      height: 60px;
+      background-color: #88b04b;
+      transform: skewY(-20deg);
+    }
+  </style>
+</head>
+<body bgcolor="black" text="white">
+  <img src="../Kid.Net.png" width="200px">
+  <div style="display: flex; align-items: center; justify-content: space-between; color: hotpink;">
+    <h1>Shapes</h1>
+    <div id="shape-name" style="color: hotpink; font-size: 30px; font-weight: bold;">shape Names</div>
+  </div>
+  <div class="shapes-grid">
+    <!-- Left column -->
+    <div class="shape circle" onclick="showShapeName('Circle')"></div>
+    <div class="shape square" onclick="showShapeName('Square')"></div>
+    <div class="shape rectangle" onclick="showShapeName('Rectangle')"></div>
+    <div class="shape triangle" onclick="showShapeName('Triangle')"></div>
+    <div class="shape pentagon" onclick="showShapeName('Pentagon')"></div>
+    <div class="shape hexagon" onclick="showShapeName('Hexagon')"></div>
+
+    <!-- Center column (only 1 shape) -->
+    <div class="shape sphere" onclick="showShapeName('Sphere')"></div>
+
+    <!-- Right column -->
+    <div class="shape cube" onclick="showShapeName('Cube')"></div>
+    <div class="shape cylinder" onclick="showShapeName('Cylinder')"></div>
+    <div class="shape cone" onclick="showShapeName('Cone')"></div>
+    <div class="shape pyramid" onclick="showShapeName('Pyramid')"></div>
+    <div class="shape prism" onclick="showShapeName('Prism')"></div>
+  </div>
+<br>
+<center>
+    <form action="./index.html">
+        <button>Back</button>
+    </form>
+</center>
+  <script>
+    function showShapeName(name) {
+      document.getElementById('shape-name').textContent = name;
+      speak(name);
+    }
+
+    function speak(msg) {
+      let speech = new SpeechSynthesisUtterance(msg);
+      speech.rate = 1;
+      speech.pitch = 1;
+      speech.lang = "en-US";
+      window.speechSynthesis.speak(speech);
+    }
+  </script>
+</body>
+</html>

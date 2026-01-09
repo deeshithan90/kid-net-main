@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Number Names with AI Voice</title>
+<style>
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        text-align: center;
+        background: black;
+        color: white;
+    }
+    .container {
+        width: 0%;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 30px;
+        display: grid;
+        margin-left: 50px;
+    }
+    .num {
+        padding: 40px;
+        background: hotpink;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 40px;
+        font-weight: bold;
+        border: 2px solid #ccc;
+        transition: 0.2s;
+        text-transform: capitalize;
+        width: 200px;
+        color: black;
+    }
+    .num:hover {
+        background: lightgreen;
+    }
+</style>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: space-around; align-items: center; column-gap: 30px;">
+        <div style="display: flex; align-items: center; column-gap: 10px;">
+            <img src="../Kid.Net.png" width="200px">
+            <h1 style="color: palegoldenrod; font-size: 50px;">Number Names</h1>
+        </div>
+
+        <div>
+            <p style="font-size: 50px;"><a href="./Numbers-name4.html" style="color: lightgreen; text-decoration: none;">🡲</a></p>
+        </div>
+    </div>
+
+<div class="container" id="numbers"></div>
+<br>
+
+<!-- BUTTONS 50–75 ADDED -->
+<div style="border: white 4px solid; font-weight: bold; display: grid; grid-template-columns: repeat(5, 1fr); color: lightgreen; padding: 15px; font-size:18px;">
+
+    <p onclick="fifty()">50</p>
+    <p onclick="fiftyOne()">51</p>
+    <p onclick="fiftyTwo()">52</p>
+    <p onclick="fiftyThree()">53</p>
+    <p onclick="fiftyFour()">54</p>
+    <p onclick="fiftyFive()">55</p>
+    <p onclick="fiftySix()">56</p>
+    <p onclick="fiftySeven()">57</p>
+    <p onclick="fiftyEight()">58</p>
+    <p onclick="fiftyNine()">59</p>
+
+    <p onclick="sixty()">60</p>
+    <p onclick="sixtyOne()">61</p>
+    <p onclick="sixtyTwo()">62</p>
+    <p onclick="sixtyThree()">63</p>
+    <p onclick="sixtyFour()">64</p>
+    <p onclick="sixtyFive()">65</p>
+    <p onclick="sixtySix()">66</p>
+    <p onclick="sixtySeven()">67</p>
+    <p onclick="sixtyEight()">68</p>
+    <p onclick="sixtyNine()">69</p>
+
+    <p onclick="seventy()">70</p>
+    <p onclick="seventyOne()">71</p>
+    <p onclick="seventyTwo()">72</p>
+    <p onclick="seventyThree()">73</p>
+    <p onclick="seventyFour()">74</p>
+    <p onclick="seventyFive()">75</p>
+
+</div>
+
+<script>
+
+    const names = [
+    "", 
+    "one","two","three","four","five","six","seven","eight","nine",
+    "ten","eleven","twelve","thirteen","fourteen","fifteen",
+    "sixteen","seventeen","eighteen","nineteen",
+
+    "twenty","twenty one","twenty two","twenty three","twenty four",
+    "twenty five","twenty six","twenty seven","twenty eight","twenty nine",
+
+    "thirty","thirty one","thirty two","thirty three","thirty four",
+    "thirty five","thirty six","thirty seven","thirty eight","thirty nine",
+
+    "forty","forty one","forty two","forty three","forty four",
+    "forty five","forty six","forty seven","forty eight","forty nine",
+
+    "fifty","fifty one","fifty two","fifty three","fifty four",
+    "fifty five","fifty six","fifty seven","fifty eight","fifty nine",
+
+    "sixty","sixty one","sixty two","sixty three","sixty four",
+    "sixty five","sixty six","sixty seven","sixty eight","sixty nine",
+
+    "seventy","seventy one","seventy two","seventy three","seventy four",
+    "seventy five"
+];  
+
+    function spellOut(word) {
+        return word.toUpperCase().split("").join(".") + ".";
+    }
+
+    const box = document.getElementById("numbers");
+
+    // NOW SHOW 1–75
+    for (let i = 50; i <= 75; i++) {
+        let div = document.createElement("div");
+        div.className = "num";
+        div.innerText = names[i];
+
+        div.onclick = () => {
+            let spelled = spellOut(names[i]);
+            let message = spelled + " — " + i;
+            speak(message);
+        };
+
+        box.appendChild(div);
+    }
+
+    function speak(msg) {
+        let speech = new SpeechSynthesisUtterance(msg);
+        speech.rate = 1;
+        speech.pitch = 1;
+        speech.lang = "en-US";
+        window.speechSynthesis.speak(speech);
+    }
+
+    /* FUNCTIONS 50–75 */
+
+    function fifty(){speak("Fifty");}
+    function fiftyOne(){speak("Fifty One");}
+    function fiftyTwo(){speak("Fifty Two");}
+    function fiftyThree(){speak("Fifty Three");}
+    function fiftyFour(){speak("Fifty Four");}
+    function fiftyFive(){speak("Fifty Five");}
+    function fiftySix(){speak("Fifty Six");}
+    function fiftySeven(){speak("Fifty Seven");}
+    function fiftyEight(){speak("Fifty Eight");}
+    function fiftyNine(){speak("Fifty Nine");}
+
+    function sixty(){speak("Sixty");}
+    function sixtyOne(){speak("Sixty One");}
+    function sixtyTwo(){speak("Sixty Two");}
+    function sixtyThree(){speak("Sixty Three");}
+    function sixtyFour(){speak("Sixty Four");}
+    function sixtyFive(){speak("Sixty Five");}
+    function sixtySix(){speak("Sixty Six");}
+    function sixtySeven(){speak("Sixty Seven");}
+    function sixtyEight(){speak("Sixty Eight");}
+    function sixtyNine(){speak("Sixty Nine");}
+
+    function seventy(){speak("Seventy");}
+    function seventyOne(){speak("Seventy One");}
+    function seventyTwo(){speak("Seventy Two");}
+    function seventyThree(){speak("Seventy Three");}
+    function seventyFour(){speak("Seventy Four");}
+    function seventyFive(){speak("Seventy Five");}
+
+</script>
+
+</body>
+</html>

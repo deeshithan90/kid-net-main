@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Number Names with AI Voice</title>
+<style>
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        text-align: center;
+        background: black;
+        color: white;
+    }
+    .container {
+        width: 0%;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 30px;
+        display: grid;
+        margin-left: 50px;
+    }
+    .num {
+        padding: 40px;
+        background: hotpink;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 40px;
+        font-weight: bold;
+        border: 2px solid #ccc;
+        transition: 0.2s;
+        text-transform: capitalize;
+        width: 200px;
+        color: black;
+    }
+    .num:hover {
+        background: lightgreen;
+    }
+</style>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: space-around; align-items: center; column-gap: 30px;">
+        <div style="display: flex; align-items: center; column-gap: 10px;">
+            <img src="../Kid.Net.png" width="200px">
+            <h1 style="color: palegoldenrod; font-size: 50px;">Number Names</h1>
+        </div>
+
+        <div>
+            <p style="font-size: 50px;"><a href="./Numbers-name.html" style="color: lightgreen; text-decoration: none;">←</a></p>
+        </div>
+    </div>
+
+<div class="container" id="numbers"></div>
+<br>
+
+<!-- BUTTONS 75–100 ADDED -->
+<div style="border: white 4px solid; font-weight: bold; display: grid; grid-template-columns: repeat(5, 1fr); color: lightgreen; padding: 15px; font-size:18px;">
+
+    <!-- 75–100 -->
+    <p onclick="seventyFive()">75</p>
+    <p onclick="seventySix()">76</p>
+    <p onclick="seventySeven()">77</p>
+    <p onclick="seventyEight()">78</p>
+    <p onclick="seventyNine()">79</p>
+
+    <p onclick="eighty()">80</p>
+    <p onclick="eightyOne()">81</p>
+    <p onclick="eightyTwo()">82</p>
+    <p onclick="eightyThree()">83</p>
+    <p onclick="eightyFour()">84</p>
+
+    <p onclick="eightyFive()">85</p>
+    <p onclick="eightySix()">86</p>
+    <p onclick="eightySeven()">87</p>
+    <p onclick="eightyEight()">88</p>
+    <p onclick="eightyNine()">89</p>
+
+    <p onclick="ninety()">90</p>
+    <p onclick="ninetyOne()">91</p>
+    <p onclick="ninetyTwo()">92</p>
+    <p onclick="ninetyThree()">93</p>
+    <p onclick="ninetyFour()">94</p>
+
+    <p onclick="ninetyFive()">95</p>
+    <p onclick="ninetySix()">96</p>
+    <p onclick="ninetySeven()">97</p>
+    <p onclick="ninetyEight()">98</p>
+    <p onclick="ninetyNine()">99</p>
+
+    <p onclick="oneHundred()">100</p>
+
+</div>
+
+<script>
+
+    const names = [
+    "", 
+    "one","two","three","four","five","six","seven","eight","nine",
+    "ten","eleven","twelve","thirteen","fourteen","fifteen",
+    "sixteen","seventeen","eighteen","nineteen",
+
+    "twenty","twenty one","twenty two","twenty three","twenty four",
+    "twenty five","twenty six","twenty seven","twenty eight","twenty nine",
+
+    "thirty","thirty one","thirty two","thirty three","thirty four",
+    "thirty five","thirty six","thirty seven","thirty eight","thirty nine",
+
+    "forty","forty one","forty two","forty three","forty four",
+    "forty five","forty six","forty seven","forty eight","forty nine",
+
+    "fifty","fifty one","fifty two","fifty three","fifty four",
+    "fifty five","fifty six","fifty seven","fifty eight","fifty nine",
+
+    "sixty","sixty one","sixty two","sixty three","sixty four",
+    "sixty five","sixty six","sixty seven","sixty eight","sixty nine",
+
+    "seventy","seventy one","seventy two","seventy three","seventy four",
+    "seventy five","seventy six","seventy seven","seventy eight","seventy nine",
+
+    "eighty","eighty one","eighty two","eighty three","eighty four",
+    "eighty five","eighty six","eighty seven","eighty eight","eighty nine",
+
+    "ninety","ninety one","ninety two","ninety three","ninety four",
+    "ninety five","ninety six","ninety seven","ninety eight","ninety nine",
+
+    "one hundred"
+];  
+
+    function spellOut(word) {
+        return word.toUpperCase().split("").join(".") + ".";
+    }
+
+    const box = document.getElementById("numbers");
+
+    // NOW SHOW 1–100
+    for (let i = 75; i <= 100; i++) {
+        let div = document.createElement("div");
+        div.className = "num";
+        div.innerText = names[i];
+
+        div.onclick = () => {
+            let spelled = spellOut(names[i]);
+            let message = spelled + " — " + i;
+            speak(message);
+        };
+
+        box.appendChild(div);
+    }
+
+    function speak(msg) {
+        let speech = new SpeechSynthesisUtterance(msg);
+        speech.rate = 1;
+        speech.pitch = 1;
+        speech.lang = "en-US";
+        window.speechSynthesis.speak(speech);
+    }
+
+    /* FUNCTIONS 75–100 */
+
+    function seventyFive(){speak("Seventy Five");}
+    function seventySix(){speak("Seventy Six");}
+    function seventySeven(){speak("Seventy Seven");}
+    function seventyEight(){speak("Seventy Eight");}
+    function seventyNine(){speak("Seventy Nine");}
+
+    function eighty(){speak("Eighty");}
+    function eightyOne(){speak("Eighty One");}
+    function eightyTwo(){speak("Eighty Two");}
+    function eightyThree(){speak("Eighty Three");}
+    function eightyFour(){speak("Eighty Four");}
+    function eightyFive(){speak("Eighty Five");}
+    function eightySix(){speak("Eighty Six");}
+    function eightySeven(){speak("Eighty Seven");}
+    function eightyEight(){speak("Eighty Eight");}
+    function eightyNine(){speak("Eighty Nine");}
+
+    function ninety(){speak("Ninety");}
+    function ninetyOne(){speak("Ninety One");}
+    function ninetyTwo(){speak("Ninety Two");}
+    function ninetyThree(){speak("Ninety Three");}
+    function ninetyFour(){speak("Ninety Four");}
+    function ninetyFive(){speak("Ninety Five");}
+    function ninetySix(){speak("Ninety Six");}
+    function ninetySeven(){speak("Ninety Seven");}
+    function ninetyEight(){speak("Ninety Eight");}
+    function ninetyNine(){speak("Ninety Nine");}
+
+    function oneHundred(){speak("One Hundred");}
+
+</script>
+
+</body>
+</html>

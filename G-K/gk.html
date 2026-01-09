@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GK Quiz</title>
+    <style>
+        body { background:black; color: palegoldenrod; font-family:sans-serif; text-align:center; }
+        .btns { 
+            background:palegoldenrod; 
+            color:black; 
+            padding:12px; 
+            margin:8px; 
+            width:90%; 
+            border:1px solid #555; 
+            border-radius:10px;
+            font-size:18px;
+        }
+        .question-box {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../Kid.Net.png" width="180px">
+
+    <div id="quiz-container" class="question-box"></div>
+
+    <p id="nextBtn"  onclick="nextQuestion()" style="margin-left: 90px; margin-top: 90px;">Next</p>
+
+<script>
+/* -------------------- AI VOICE -------------------- */
+function aiSpeak(text) {
+    if (!text) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    const voices = speechSynthesis.getVoices();
+    utterance.voice = voices.find(v => v.lang === "en-US") || voices[0];
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    speechSynthesis.speak(utterance);
+}
+
+const data = localStorage.getItem("kid");
+
+/* -------------------- 50 QUESTIONS -------------------- */
+const quizData = [
+    { question:"What is the capital of France?", options:["Tamil Nadu","Gironde","Nord","Paris"], answer:3 },
+    { question:"Who was the first President of India?", options:["Sarvepalli Radhakrishnan","Rajendra Prasad","Jawaharlal Nehru","Lal Bahadur Shastri"], answer:1 },
+    { question:"Which is the largest planet?", options:["Earth","Mars","Jupiter","Venus"], answer:2 },
+    { question:"National animal of India?", options:["Lion","Tiger","Elephant","Leopard"], answer:1 },
+    { question:"How many days in a week?", options:["5","6","7","8"], answer:2 },
+    { question:"Which gas do plants produce?", options:["Oxygen","Carbon dioxide","Nitrogen","Helium"], answer:0 },
+    { question:"Which is the fastest animal?", options:["Cheetah","Lion","Horse","Tiger"], answer:0 },
+    { question:"Taj Mahal is in?", options:["Delhi","Mumbai","Agra","Jaipur"], answer:2 },
+    { question:"Sun rises in the?", options:["North","South","East","West"], answer:2 },
+    { question:"How many continents?", options:["5","6","7","8"], answer:2 },
+    { question:"What is H2O?", options:["Water","Air","Salt","Fire"], answer:0 },
+    { question:"Largest ocean?", options:["Indian","Atlantic","Arctic","Pacific"], answer:3 },
+    { question:"2 + 2 = ?", options:["3","4","5","6"], answer:1 },
+    { question:"Which is the smallest month?", options:["January","February","March","April"], answer:1 },
+    { question:"National bird of India?", options:["Sparrow","Peacock","Crow","Parrot"], answer:1 },
+    { question:"Largest desert?", options:["Sahara","Thar","Gobi","Arabian"], answer:0 },
+    { question:"Which animal gives milk?", options:["Cow","Dog","Cat","Wolf"], answer:0 },
+    { question:"Which fruit is yellow?", options:["Apple","Banana","Grapes","Cherry"], answer:1 },
+    { question:"Which is used to write?", options:["Paper","Eraser","Pen","Book"], answer:2 },
+    { question:"Which animal has a trunk?", options:["Tiger","Elephant","Giraffe","Horse"], answer:1 },
+    { question:"Shape with 4 sides?", options:["Circle","Triangle","Square","Oval"], answer:2 },
+    { question:"Planet known as Red Planet?", options:["Earth","Mars","Jupiter","Venus"], answer:1 },
+    { question:"National flower of India?", options:["Rose","Lotus","Sunflower","Jasmine"], answer:1 },
+    { question:"Largest country by area?", options:["USA","China","India","Russia"], answer:3 },
+    { question:"Prime source of light?", options:["Moon","Sun","Stars","Bulb"], answer:1 },
+    { question:"Which month has 30 days?", options:["February","April","May","January"], answer:1 },
+    { question:"Spider has how many legs?", options:["4","6","8","10"], answer:2 },
+    { question:"Largest mammal?", options:["Elephant","Blue Whale","Shark","Giraffe"], answer:1 },
+    { question:"National game of India (traditional)?", options:["Cricket","Hockey","Kabaddi","Football"], answer:1 },
+    { question:"Rainbow has how many colors?", options:["5","6","7","8"], answer:2 },
+    { question:"Which organ pumps blood?", options:["Brain","Liver","Heart","Lungs"], answer:2 },
+    { question:"Square root of 9?", options:["2","3","4","5"], answer:1 },
+    { question:"Which bird cannot fly?", options:["Eagle","Crow","Ostrich","Sparrow"], answer:2 },
+    { question:"How many letters in English alphabet?", options:["24","25","26","27"], answer:2 },
+    { question:"Which is used to see?", options:["Ear","Eye","Nose","Hand"], answer:1 },
+    { question:"Baby of a cat?", options:["Cub","Kitten","Puppy","Calf"], answer:1 },
+    { question:"How many minutes in 1 hour?", options:["30","45","60","90"], answer:2 },
+    { question:"Which is the hottest planet?", options:["Venus","Mercury","Earth","Mars"], answer:0 },
+    { question:"Which festival is of lights?", options:["Holi","Diwali","Eid","Pongal"], answer:1 },
+    { question:"Which gas do humans breathe?", options:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"], answer:0 },
+    { question:"National river of India?", options:["Yamuna","Ganga","Krishna","Cauvery"], answer:1 },
+    { question:"Which animal is King of Jungle?", options:["Tiger","Lion","Cheetah","Leopard"], answer:1 },
+    { question:"Planet we live on?", options:["Mars","Jupiter","Earth","Venus"], answer:2 },
+    { question:"Largest bone in body?", options:["Skull","Rib","Femur","Spine"], answer:2 },
+    { question:"Which shape is round?", options:["Square","Triangle","Circle","Rectangle"], answer:2 },
+    { question:"How many hours in a day?", options:["12","18","24","36"], answer:2 },
+    { question:"Which animal eats bamboo?", options:["Lion","Giraffe","Panda","Dog"], answer:2 },
+    { question:"Which sense organ hears?", options:["Eye","Ear","Nose","Skin"], answer:1 },
+    { question:"Hardest natural substance?", options:["Gold","Iron","Diamond","Silver"], answer:2 },
+
+    /* -------------------- 50 NEW QUESTIONS BELOW -------------------- */
+
+    { question:"What do bees produce?", options:["Honey","Milk","Wax","Juice"], answer:0 },
+    { question:"Which star is closest to Earth?", options:["Sirius","Sun","Polaris","Vega"], answer:1 },
+    { question:"Tallest mountain in world?", options:["K2","Everest","Kilimanjaro","Kanchenjunga"], answer:1 },
+    { question:"Smallest ocean?", options:["Pacific","Indian","Arctic","Atlantic"], answer:2 },
+    { question:"How many days in a year?", options:["360","365","370","355"], answer:1 },
+    { question:"Which gas do humans exhale?", options:["Oxygen","Carbon dioxide","Nitrogen","Helium"], answer:1 },
+    { question:"Largest continent?", options:["Africa","Europe","Asia","Australia"], answer:2 },
+    { question:"Which animal lays eggs?", options:["Cow","Dog","Hen","Goat"], answer:2 },
+    { question:"Which bird is US national bird?", options:["Peacock","Eagle","Sparrow","Parrot"], answer:1 },
+    { question:"Frozen water is called?", options:["Steam","Ice","Rain","Hail"], answer:1 },
+    { question:"How many inches in a foot?", options:["10","11","12","15"], answer:2 },
+    { question:"Which organ helps breathing?", options:["Heart","Lungs","Brain","Liver"], answer:1 },
+    { question:"Heart is on which side?", options:["Right","Left","Middle","Back"], answer:1 },
+    { question:"Largest internal organ?", options:["Heart","Liver","Lungs","Brain"], answer:1 },
+    { question:"Warm-blooded animal?", options:["Snake","Frog","Whale","Lizard"], answer:2 },
+    { question:"Which senses smell?", options:["Eye","Ear","Nose","Skin"], answer:2 },
+    { question:"How many wheels a car has?", options:["2","3","4","6"], answer:2 },
+    { question:"Which vehicle flies?", options:["Car","Bus","Airplane","Train"], answer:2 },
+    { question:"Measures temperature?", options:["Barometer","Thermometer","Speedometer","Altimeter"], answer:1 },
+    { question:"Festival of colors?", options:["Diwali","Holi","Eid","Christmas"], answer:1 },
+    { question:"Animal living in water?", options:["Cow","Shark","Lion","Tiger"], answer:1 },
+    { question:"King of fruits?", options:["Banana","Apple","Mango","Grapes"], answer:2 },
+    { question:"Planet with rings?", options:["Mars","Earth","Saturn","Mercury"], answer:2 },
+    { question:"Animal with stripes?", options:["Lion","Tiger","Zebra","Horse"], answer:2 },
+    { question:"Cows eat?", options:["Meat","Grass","Fish","Worms"], answer:1 },
+    { question:"Longest river?", options:["Amazon","Ganga","Nile","Mississippi"], answer:2 },
+    { question:"Fruit with seeds outside?", options:["Banana","Apple","Strawberry","Grapes"], answer:2 },
+    { question:"Organ for digestion?", options:["Stomach","Heart","Lungs","Brain"], answer:0 },
+    { question:"Hexagon has how many sides?", options:["4","5","6","7"], answer:2 },
+    { question:"Opposite of East?", options:["West","North","South","NE"], answer:0 },
+    { question:"Used to cut paper?", options:["Pen","Pencil","Scissors","Eraser"], answer:2 },
+    { question:"Animal with hump?", options:["Camel","Horse","Cow","Goat"], answer:0 },
+    { question:"Fruit used for wine?", options:["Apple","Banana","Grapes","Guava"], answer:2 },
+    { question:"Machine to talk far?", options:["Radio","Telephone","TV","Computer"], answer:1 },
+    { question:"Which country invented paper?", options:["India","China","Egypt","America"], answer:1 },
+    { question:"Animal with long neck?", options:["Elephant","Lion","Giraffe","Tiger"], answer:2 },
+    { question:"Device shows time?", options:["Calculator","Clock","Compass","Camera"], answer:1 },
+    { question:"Smallest planet?", options:["Earth","Mars","Mercury","Pluto"], answer:2 },
+    { question:"Liquid metal?", options:["Gold","Iron","Mercury","Lead"], answer:2 },
+    { question:"Land of Rising Sun?", options:["China","Japan","Korea","Thailand"], answer:1 },
+    { question:"Plant in deserts?", options:["Rose","Cactus","Lotus","Tulip"], answer:1 },
+    { question:"Insect with wings?", options:["Ant","Bee","Butterfly","Mosquito"], answer:2 },
+    { question:"After June comes?", options:["May","July","August","April"], answer:1 },
+    { question:"How many colors in Indian flag?", options:["2","3","4","5"], answer:1 },
+    { question:"Festival of trees?", options:["Christmas","Van Mahotsav","Holi","Diwali"], answer:1 },
+    { question:"Bat & ball game?", options:["Chess","Cricket","Carrom","Hockey"], answer:1 },
+    { question:"Small water body?", options:["Sea","Ocean","Pond","River"], answer:2 },
+    { question:"Machine that computes?", options:["Computer","Camera","Printer","Bulb"], answer:0 },
+    { question:"Hottest season?", options:["Summer","Winter","Rainy","Spring"], answer:0 },
+    { question:"How many vowels?", options:["4","5","6","7"], answer:1 }
+];
+
+/* -------------------- QUIZ SYSTEM -------------------- */
+let currentQuestion = 0;
+
+function loadQuestion() {
+    const q = quizData[currentQuestion];
+    if (!q) {
+        document.getElementById("quiz-container").innerHTML = "<h1>Quiz Completed!</h1>";
+        document.getElementById("nextBtn").style.display = "none";
+        aiSpeak("Quiz Completed Great Job");
+        return;
+    }
+
+    let html = `<h1>${q.question}</h1>`;
+    q.options.forEach((opt, i) => {
+        html += `<button class="btns" onclick="checkAnswer(${i})">${opt}</button>`;
+    });
+
+    document.getElementById("quiz-container").innerHTML = html;
+}
+
+function checkAnswer(selected) {
+    const correct = quizData[currentQuestion].answer;
+
+    if (selected === correct) {
+        aiSpeak(`Great ${data}`);
+    } else {
+        aiSpeak("Wrong answer");
+    }
+}
+
+function nextQuestion() {
+    currentQuestion++;
+    loadQuestion();
+}
+
+/* Start quiz */
+loadQuestion();
+</script>
+
+</body>
+</html>

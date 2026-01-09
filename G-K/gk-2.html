@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.k</title>
+    <link rel="stylesheet" href="../atyle.css">
+</head>
+<body bgcolor="black" text="white">
+    <img src="../Kid.Net.png" width="200px">
+    <center>
+    <div>
+        <h1>In which year did India gain independence</h1>
+        <br>
+        <div style="display: flex; justify-content: space-around;">
+            <button class="btns" style="display: flex; align-items: center; column-gap: 10px;" onclick="popup()">1947 <input type="checkbox" name="" id=""></button>
+            <button class="btns" style="display: flex; align-items: center; column-gap: 10px;" onclick="wrong()">2015 <input type="checkbox" name="" id=""></button>
+        </div>
+        <br>
+        <div style="display: flex; justify-content: space-around;">
+            <button class="btns" style="display: flex; align-items: center; column-gap: 10px;" onclick="wrong()">1989 <input type="checkbox" name="" id=""></button>
+            <button class="btns" style="display: flex; align-items: center; column-gap: 10px;" onclick="wrong()">1950 <input type="checkbox" name="" id=""></button>
+        </div>
+    <br>
+    <div>
+        <h1>Who is known as the Father of the Nation in India</h1>
+        <br>
+        <div style="display: flex; justify-content: space-around;">
+            <button class="btns" style="display: flex; align-items: center; column-gap: 10px;" onclick="wrong()">Jawaharlal Nehru <input type="checkbox" name="" id=""></button>
+            <button class="btns" style="display: flex; align-items: center; column-gap: 10px;" onclick="wrong()">Lala Lajpat Raix <input type="checkbox" name="" id=""></button>
+        </div>
+        <br>
+        <div style="display: flex; justify-content: space-around;">
+            <button class="btns" style="display: flex; align-items: center; column-gap: 10px;" onclick="popup()">Mahatma Gandhi <input type="checkbox" name="" id=""></button>
+            <button class="btns" style="display: flex; align-items: center; column-gap: 10px;" onclick="wrong()">Gopal Krishna <input type="checkbox" name="" id=""></button>
+        </div>
+    </div>
+    </center>
+    <button class="btns"><a href="./gk-3.html">Next</a></button>
+</body>
+</html>
+<script>
+   function aiSpeak(text) {
+  if (!text) return; // do nothing if text is empty
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  // Choose a voice (English US, fallback to first available)
+  const voices = window.speechSynthesis.getVoices();
+  utterance.voice = voices.find(voice => voice.lang === 'en-US') || voices[0];
+
+  // Optional: adjust speech properties
+  utterance.rate = 1;   // speed
+  utterance.pitch = 1;  // pitch
+  utterance.volume = 1; // volume
+
+  // Speak the text
+  window.speechSynthesis.speak(utterance);
+}
+
+const data = localStorage.getItem("kid")
+
+function popup(){
+   aiSpeak(`great. ${data}`)
+}
+
+function wrong(){
+    aiSpeak("wrong answer")
+}
+</script>

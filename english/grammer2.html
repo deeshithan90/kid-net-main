@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Exercise</title>
+
+    <style>
+        body {
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .question {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            margin: 15px 0;
+            font-size: 22px;
+            margin-left: 20px;
+        }
+
+        .dash-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px white solid;
+            color: hotpink;
+            padding: 5px;
+            width: 150px;
+            font-size: 20px;
+            outline: none;
+        }
+
+        #resultBox {
+            margin-top: 25px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        button {
+            background: palegoldenrod;
+            border: none;
+            padding: 12px 25px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: deeppink;
+        }
+    </style>
+</head>
+
+<body>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+    <img src="../Kid.Net.png" width="300">
+    <h1 style="font-size: 50px;">Grammar</h1>
+</div>
+
+<br><br><br><br><br>
+<div style="display: flex; align-items: center; column-gap: 70px;">
+    <button onclick="setTense('present')">Present Tense</button>
+    <button onclick="setTense('past')">Past Tense</button>
+    <form action="./grammer3.html">
+        <button>Future Tense</button>
+    </form>
+</div>
+
+<br><br>
+
+<center>
+<h2>Fill in the blanks:</h2>
+
+<div class="question">1. I <input class="dash-input" id="q1"> going</div>
+<div class="question">2. She <input class="dash-input" id="q2"> eating</div>
+<div class="question">3. They <input class="dash-input" id="q3"> runing</div>
+<div class="question">4. He <input class="dash-input" id="q4"> playing</div>
+<div class="question">5. We <input class="dash-input" id="q5"> dancing</div>
+<div class="question">6. You <input class="dash-input" id="q6"> reading</div>
+<div class="question">7. It <input class="dash-input" id="q7"> runing</div>
+
+<button onclick="checkAnswers()">Submit</button>
+</center>
+
+<div id="resultBox"></div>
+<div>
+    <form action="./english.html">
+        <button>Back</button>
+    </form>
+</div>
+<script>
+// Correct answers for each tense
+const presentAnswers = ["am", "is", "are", "is", "are", "are", "is"];
+const pastAnswers = ["was", "was", "were", "was", "were", "were", "was"];
+
+// UPDATED: Simple Future Tense
+const futureAnswers = ["will", "will", "will", "will", "will", "will", "will"];
+
+let correctAnswers = pastAnswers; // default
+
+function setTense(type) {
+    if (type === "present") {
+        correctAnswers = presentAnswers;
+    } else if (type === "past") {
+        correctAnswers = pastAnswers;
+    } else if (type === "future") {
+        correctAnswers = futureAnswers;
+    }
+
+    // Auto-fill inputs
+    for (let i = 1; i <= 7; i++) {
+        document.getElementById("q" + i).value = correctAnswers[i - 1];
+    }
+
+    document.getElementById("resultBox").innerHTML = "";
+}
+
+
+function checkAnswers() {
+    let score = 0;
+
+    for (let i = 1; i <= 7; i++) {
+        let userAnswer = document.getElementById("q" + i).value.trim().toLowerCase();
+        if (userAnswer === correctAnswers[i - 1]) score++;
+    }
+
+    let result = document.getElementById("resultBox");
+    if (score === 7) {
+        result.innerHTML = "✅ All Correct! Excellent!";
+        result.style.color = "lightgreen";
+    } else {
+        result.innerHTML = "❌ You got " + score + " / 7 correct. Try again!";
+        result.style.color = "red";
+    }
+}
+</script>
+</body>
+</html>

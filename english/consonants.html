@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consonant Learning Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: palegoldenrod;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+            padding: 10px;
+        }
+
+        .box {
+            background: #222;
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+
+        .box:hover {
+            background: hotpink;
+            color: black;
+            font-weight: bold;
+        }
+
+        .letter {
+            font-size: 60px;
+            font-weight: bold;
+            color: palegoldenrod;
+        }
+
+        .meaning {
+            font-size: 22px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<img src="../Kid.Net.png" alt="">
+    <h1>Consonant Learning — B to Z</h1>
+
+    <div class="grid" id="grid"></div>
+
+    <script>
+        const consonants = {
+            B: "Ball",
+            C: "Cat",
+            D: "Dog",
+            F: "Fish",
+            G: "Grapes",
+            H: "Hat",
+            J: "Jug",
+            K: "Kite",
+            L: "Lion",
+            M: "Monkey",
+            N: "Nest",
+            P: "Parrot",
+            Q: "Queen",
+            R: "Rabbit",
+            S: "Sun",
+            T: "Tiger",
+            V: "Van",
+            W: "Watch",
+            X: "Xylophone",
+            Y: "Yak",
+            Z: "Zebra"
+        };
+
+        function speak(text) {
+            let msg = new SpeechSynthesisUtterance(text);
+            msg.rate = 0.9;
+            msg.pitch = 1;
+            speechSynthesis.speak(msg);
+        }
+
+        let grid = document.getElementById("grid");
+
+        // create boxes
+        for (let letter in consonants) {
+            let word = consonants[letter];
+
+            grid.innerHTML += `
+                <div class="box" onclick="showMeaning('${letter}','${word}', '${letter}Meaning')">
+                    <div class="letter">${letter}</div>
+                    <div id="${letter}Meaning" class="meaning">${letter} - ${word}</div>
+                </div>
+            `;
+        }
+
+        function showMeaning(letter, word, id) {
+            document.querySelectorAll(".meaning").forEach(el => el.style.display = "none");
+
+            document.getElementById(id).style.display = "block";
+
+            speak(letter + " for " + word);
+        }
+    </script>
+
+</body>
+</html>

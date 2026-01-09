@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kid-net</title>
+</head>
+
+<body bgcolor="black" text="white">
+    <center>
+        <h1>Honest wood cutter</h1>
+        <img src="./ChatGPT Image Nov 23, 2025, 08_48_01 AM.png" width="300px" alt="">
+        <p id="read">
+            Once upon a time, in a peaceful forest village, lived a poor but honest woodcutter. Every morning, he walked
+            deep into the woods with his old axe, cutting just enough wood to earn his daily bread.
+
+            One day, while chopping wood near a river, his axe slipped from his hands and fell into the deep water.
+
+            The woodcutter sat down sadly.
+            “My only axe… how will I work now?” he cried.
+
+            Suddenly, the river began to shine. A forest spirit rose from the water holding a golden axe.
+
+            “Is this your axe?” the spirit asked.
+
+            The woodcutter shook his head immediately.
+            “No, that is not mine. I am too poor to own something so grand.”
+
+            The spirit disappeared into the water and returned holding a silver axe.
+
+            “Is this your axe?” she asked again.
+
+            The woodcutter replied,
+            “No, that one is not mine either.”
+
+            Finally, the spirit brought out his old, worn wooden-handled iron axe.
+
+            The woodcutter’s face lit up.
+            “Yes! That’s my axe!”
+
+            The spirit smiled.
+            “Your honesty deserves a reward.”
+
+            She gave him all three axes — gold, silver, and iron — and vanished into the river again.
+
+            The woodcutter went home happily. From that day on, he lived a comfortable life, always remembered for his
+            honesty.
+
+            And the villagers would say:
+            “Honesty brings more riches than greed ever can.”
+        </p>
+        <br>
+        <br>
+        <button style="padding: 15px; background-color: palegoldenrod; border: none;" onclick="teel()">read</button>
+    </center>
+    <br>
+    <br>
+    <center>
+        <h1>The Cunning Fox and the Brave Rooster</h1>
+        <img src="./ChatGPT Image Nov 23, 2025, 09_14_41 AM.png" width="300px">
+        <p id="read2">
+            In a small farm village lived a brave rooster named Raku. Every morning he crowed loudly from the tallest
+            fence post, waking up the whole farm.
+
+            A hungry fox heard Raku’s powerful voice. “If I catch that rooster, I’ll never be hungry again,” he thought.
+
+            One evening the fox sneaked into the farm and whispered,
+            “Oh noble rooster, I have wonderful news! The king of animals has declared peace between all creatures. We
+            will never harm each other again!”
+
+            Raku narrowed his eyes — he knew foxes were tricky.
+
+            “That’s great!” he said. “Let me call my friend, the farm dog, so he can hear the good news too!”
+
+            The fox panicked. “Dog?? Oh… I just remembered something important! I must go!”
+
+            And he ran away before the dog even arrived.
+
+            Raku laughed. “A liar always fears the truth.”
+
+            The animals on the farm praised Raku for his wisdom and bravery.
+
+            Moral: Clever thinking protects you from danger.
+        </p>
+        <br>
+        <button style="background-color: palegoldenrod; padding: 15px; border: none;" onclick="tell2()">Read</button>
+    </center>
+</body>
+
+</html>
+
+<script>
+    const read = document.getElementById("read")
+    const read2 = document.getElementById("read2")
+
+    function aiSpeak(text) {
+    if (!text) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    const voices = speechSynthesis.getVoices();
+    utterance.voice = voices.find(v => v.lang === "en-US") || voices[0];
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    speechSynthesis.speak(utterance);
+}
+
+function teel(){
+  aiSpeak(read.innerText)
+}
+function tell2(){
+  aiSpeak(read2.innerText)
+}
+</script>

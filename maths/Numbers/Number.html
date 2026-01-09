@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Number Balloons 1–100</title>
+<style>
+    body {
+        background: black;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .balloon {
+        width: 130px;
+        height: 140px;
+        background: red;
+        border-radius: 50%;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        transition: transform 0.2s;
+        font-size: 50px;
+    }
+
+    .balloon:hover {
+        transform: scale(1.1);
+        background: #ff4fa5;
+    }
+
+    .string {
+        width: 2px;
+        height: 40px;
+        background: white;
+        margin: 0 auto;
+    }
+</style>
+</head>
+<body>
+    <img src="">
+</body>
+<script>
+    // Generate 1 to 100 balloons
+    for (let i = 1; i <= 100; i++) {
+        let container = document.createElement("div");
+        container.style.textAlign = "center";
+
+        let balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.textContent = i;
+
+        // Click event to speak the number
+        balloon.onclick = () => {
+            let speak = new SpeechSynthesisUtterance(i.toString());
+            speechSynthesis.speak(speak);
+        };
+
+        let string = document.createElement("div");
+        string.className = "string";
+
+        container.appendChild(balloon);
+        container.appendChild(string);
+        document.body.appendChild(container);
+    }
+</script>
+
+</body>
+</html>

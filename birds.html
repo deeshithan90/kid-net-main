@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birds Page</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Black background */
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 30px;
+        }
+
+        /* Grid Layout */
+        .grid-container {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            justify-items: center;
+        }
+
+        /* Bird Box */
+        .bird {
+            background-color: #555; /* Gray box */
+            padding: 10px;
+            border-radius: 12px;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .bird:hover {
+            background-color: hotpink;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.6);
+        }
+
+        .bird img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+
+        .bird p {
+            margin-top: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .bird img {
+                max-width: 100px;
+            }
+
+            .bird p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+    <img src="../Kid.Net.png" width="200px">
+    <h1>Bird Gallery</h1>
+</div>
+    <div class="grid-container">
+        <div class="bird" onclick="speak('This is a sparrow')">
+            <img src="images/sparrow.jfif" alt="Sparrow">
+            <p>Sparrow</p>
+        </div>
+
+        <div class="bird" onclick="speak('This is a parrot')">
+            <img src="images/parrot.jfif" alt="Parrot">
+            <p>Parrot</p>
+        </div>
+
+        <div class="bird" onclick="speak('This is an eagle')">
+            <img src="images/eagle.jfif" alt="Eagle">
+            <p>Eagle</p>
+        </div>
+
+        <div class="bird" onclick="speak('This is a dove')">
+            <img src="images/dove.jfif" alt="Dove">
+            <p>Dove</p>
+        </div>
+
+        <div class="bird" onclick="speak('This is a duck')">
+            <img src="images/duck.jfif" alt="Duck">
+            <p>Duck</p>
+        </div>
+
+        <div class="bird" onclick="speak('This is a kingfisher')">
+            <img src="images/kingFisher.jfif" alt="KingFisher">
+            <p>KingFisher</p>
+        </div>
+
+        <div class="bird" onclick="speak('This is an owl')">
+            <img src="images/owl.jfif" alt="Owl">
+            <p>Owl</p>
+        </div>
+
+        <div class="bird" onclick="speak('This is a peacock')">
+            <img src="images/peacock.jpg" alt="Peacock">
+            <p>Peacock</p>
+        </div>
+
+        <div class="bird" onclick="speak('This is a woodpecker')">
+            <img src="images/realwoodpeaker.webp" alt="WoodPecker">
+            <p>WoodPecker</p>
+        </div>
+    </div>
+
+    <script>
+        function speak(text) {
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = "en-US";
+            speech.rate = 1;
+            speech.pitch = 1;
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+
+</body>
+</html>

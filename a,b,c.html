@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ABC Learning Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: black;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: palegoldenrod;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            margin-top: 30px;
+        }
+
+        .box {
+            background: #222;
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .box:hover {
+            background: #444;
+        }
+
+        .letter {
+            font-size: 60px;
+            font-weight: bold;
+            color: palegoldenrod;
+        }
+
+        .word {
+            font-size: 24px;
+            margin-top: 5px;
+        }
+
+        .img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ABC Learning — A to Z</h1>
+
+    <div class="grid">
+        <!-- JS will insert all 26 boxes here -->
+    </div>
+
+    <script>
+        const data = {
+            A: "Apple",
+            B: "Ball",
+            C: "Cat",
+            D: "Dog",
+            E: "Elephant",
+            F: "Fish",
+            G: "Grapes",
+            H: "Hat",
+            I: "Ice Cream",
+            J: "Jug",
+            K: "Kite",
+            L: "Lion",
+            M: "Monkey",
+            N: "Nest",
+            O: "Orange",
+            P: "Parrot",
+            Q: "Queen",
+            R: "Rabbit",
+            S: "Sun",
+            T: "Tiger",
+            U: "Umbrella",
+            V: "Van",
+            W: "Watch",
+            X: "Xylophone",
+            Y: "Yak",
+            Z: "Zebra"
+        };
+
+        function speak(text) {
+            let msg = new SpeechSynthesisUtterance(text);
+            msg.rate = 0.9;
+            msg.pitch = 1;
+            speechSynthesis.speak(msg);
+        }
+
+        let grid = document.querySelector(".grid");
+
+        for (let letter in data) {
+            let word = data[letter];
+
+            grid.innerHTML += `
+                <div class="box" onclick="speak('${letter} for ${word}')">
+                    <div class="letter">${letter}</div>
+                    <img class="img" src="images/${letter.toLowerCase()}.jfif" alt="">
+                    <div class="word">${word}</div>
+                </div>
+            `;
+        }
+    </script>
+
+</body>
+</html>

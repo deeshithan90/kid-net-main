@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../atyle.css">
+    <br>
+    <br>
+    <title>Vowel Learning Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: palegoldenrod;
+        }
+
+        .vowel-box {
+            background: #222;
+            width: 250px;
+            margin: 25px auto;
+            padding: 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .vowel-box:hover {
+            background: #444;
+        }
+
+        .letter {
+            font-size: 80px;
+            color: palegoldenrod;
+            font-weight: bold;
+        }
+
+        .meaning {
+            font-size: 26px;
+            margin-top: 10px;
+            display: none; /* hidden at first */
+        }
+    </style>
+</head>
+<body>
+    <img src="../Kid.Net.png" alt="">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <h1>Vowel Learning — A E I O U</h1>
+<div>
+    <br>
+    <br>
+    <div class="vowel-box" onclick="showMeaning('A', 'Apple', 'aMeaning')">
+        <div class="letter">A</div>
+        <div id="aMeaning" class="meaning">A - Apple</div>
+    </div>
+
+    <div class="vowel-box" onclick="showMeaning('E', 'Elephant', 'eMeaning')">
+        <div class="letter">E</div>
+        <div id="eMeaning" class="meaning">E - Elephant</div>
+    </div>
+
+    <div class="vowel-box" onclick="showMeaning('I', 'Ice Cream', 'iMeaning')">
+        <div class="letter">I</div>
+        <div id="iMeaning" class="meaning">I - Ice Cream</div>
+    </div>
+
+    <div class="vowel-box" onclick="showMeaning('O', 'Orange', 'oMeaning')">
+        <div class="letter">O</div>
+        <div id="oMeaning" class="meaning">O - Orange</div>
+    </div>
+
+    <div class="vowel-box" onclick="showMeaning('U', 'Umbrella', 'uMeaning')">
+        <div class="letter">U</div>
+        <div id="uMeaning" class="meaning">U - Umbrella</div>
+    </div>
+</div>
+<button class="btns">Back</button>
+    <script>
+        function showMeaning(letter, word, id) {
+            // hide all meanings first
+            document.querySelectorAll(".meaning").forEach(el => el.style.display = "none");
+
+            // show selected one
+            document.getElementById(id).style.display = "block";
+
+            // speak
+            let msg = new SpeechSynthesisUtterance(letter + " for " + word);
+            msg.rate = 0.9;
+            msg.pitch = 1;
+            speechSynthesis.speak(msg);
+        }
+    </script>
+
+</body>
+</html>
